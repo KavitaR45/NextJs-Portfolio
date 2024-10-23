@@ -19,8 +19,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div>
-        {/* <TechStack /> */}
+      <div className="flex flex-col justify-center gap-8 h-full relative items-center p-10 flex-wrap">
+      <h1 className="text-4xl sm:text-5xl font-bold">Tech Stack</h1>
+      <p className="text-xl w-full lg:w-3/5 text-center">Copy paste the most trending components and use them in your websites without having to worry about styling and animations.</p>
+        <TechStack />
       </div>
     </>
   );
