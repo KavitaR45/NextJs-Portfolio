@@ -20,7 +20,17 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "@formspree/react": "^2.5.1",
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "canvas-confetti": "^1.9.3",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "lucide-react": "^0.411.0",
+    "react-hook-form": "^7.52.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
