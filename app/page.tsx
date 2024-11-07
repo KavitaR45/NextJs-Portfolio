@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form"
 import { Textarea } from "@/components/ui/textarea"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input"
+import { Toaster, toast } from 'sonner'
+
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -19,7 +21,7 @@ const formSchema = z.object({
 })
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
-  const form = useForm<z.infer<typeof formSchema>>({
+  const { reset, ...form } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
@@ -29,17 +31,41 @@ export default function Home() {
     },
   })
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true)
-    const formData = { ...values };
-    await fetch("https://formspree.io/f/mnnajogb", {
-      method: "POST",
-      body: formData,
-    });
-    setLoading(false);
+    setLoading(true);
+  
+    // Prepare the data in JSON format
+    const formData = JSON.stringify(values);
+  
+    try {
+      const response = await fetch("https://formspree.io/f/mnnajogb", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      });
+  
+      if (response.ok) {
+        // Optionally, you could add a success message here
+        toast.success("Form submitted successfully")
+        console.log("Form submitted successfully");
+        reset();
+      } else {
+        toast.error("Form submission error")
+        console.error("Form submission error:", response.statusText);
+      }
+    } catch (error) {
+      toast.error("Form submission error")
+      console.error("Form submission error:", error);
+    } finally {
+      setLoading(false);
+    }
   }
+  
 
   return (
     <>
+    <Toaster  position="top-center" richColors   />
       <div className="py-8 w-full dark:bg-neutral-950 bg-white   relative flex items-center justify-center">
       {/* <div className="py-24 w-full dark:bg-neutral-950 bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center"> */}
         {/* Radial gradient for the container to give a faded look */}
@@ -48,9 +74,9 @@ export default function Home() {
           <div className="flex gap-6 flex-col md:w-2/4 w-full md:px-8 py-4 dark:text-white" >
             <h1 className="text-4xl sm:text-5xl font-bold">Make your websites look 10x modern</h1>
             <p className="text-xl">Copy paste the most trending components and use them in your websites without having to worry about styling and animations.</p>
-            <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 w-max">
+            <a target="_blank" href="/image/Kavita_Resume.pdf" className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 w-max">
               Download CV
-            </button>
+            </a>
           </div>
           <div className="flex gap-6 flex-col md:w-2/4 w-full md:px-8 py-4">
             <TerminalComponent />
@@ -71,7 +97,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col justify-center gap-8 h-full relative items-center p-10 flex-wrap">
         <h2 className="text-4xl sm:text-5xl font-bold">Get In Touch</h2>
-        <p className="text-xl w-full lg:w-3/5 text-center">Copy paste the most trending components and use them in your websites without having to worry about styling and animations.</p>
+        <p className="text-xl w-full lg:w-3/5 text-center">Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!</p>
         <div className="w-full flex justify-center">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full md:w-1/2 mt-10 text-center">
