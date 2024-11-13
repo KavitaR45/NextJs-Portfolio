@@ -12,25 +12,27 @@ const TerminalComponent = () => {
                 <div className="p-4 text-white">
                     <div className="text-sm">
                         <span className="font-mono text-green-400">~ $</span>
-                        <span className="ml-2">Welcome to my portfolio! 🌟</span>
+                        <span className="ml-2">whoami</span>
+                        <span className="ml-0 block">- Developer skilled in crafting impactful web experiences</span>
                     </div>
-                    <div className="text-sm mt-2">
+                    <div className="text-sm mt-4">
                         <span className="font-mono text-green-400">~ $</span>
-                        <span className="ml-2">Check out my projects below:</span>
+                        <span className="ml-2">skills --list</span>
+                        <span className="ml-0 block">- JavaScript, Next.js, React, Strapi, WordPress, WooCommerce, ERP Solutions, HTML, CSS</span>
                     </div>
-                    <div className="text-sm mt-2">
+                    <div className="text-sm mt-4">
                         <span className="font-mono text-green-400">~ $</span>
-                        <span className="ml-2">1. Project One</span>
-                    </div>
-                    <div className="text-sm mt-2">
+                        <span className="ml-2">open-source contributor: ([Typebot GitHub](https://github.com/baptisteArno/typebot.io))</span>
+                      </div>
+                    <div className="text-sm mt-4">
                         <span className="font-mono text-green-400">~ $</span>
-                        <span className="ml-2">2. Project Two</span>
+                        <span className="ml-2">linkedIn: https://www.linkedin.com/in/kavita-rawat-6492a92a3/</span>
                     </div>
-                    <div className="text-sm mt-2">
+                    <div className="text-sm mt-4">
                         <span className="font-mono text-green-400">~ $</span>
-                        <span className="ml-2">3. Project Three</span>
+                        <span className="ml-2">github: https://github.com/KavitaR45</span>
                     </div>
-                    {/* Add more lines as needed */}
+                   
                 </div>
             </div>
         </div>
