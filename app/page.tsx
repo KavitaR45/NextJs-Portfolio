@@ -21,7 +21,7 @@ const formSchema = z.object({
 })
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { reset, ...form } = useForm<z.infer<typeof formSchema>>({
+  const { control, handleSubmit, reset, setFocus, watch, getValues } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
@@ -99,10 +99,10 @@ export default function Home() {
         <h2 className="text-4xl sm:text-5xl font-bold">Get In Touch</h2>
         <p className="text-xl w-full lg:w-3/5 text-center">Feel free to reach out—I’d love to collaborate!</p>
         <div className="w-full flex justify-center">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full md:w-1/2 mt-10 text-center">
+          <Form {...{ control, handleSubmit, reset, setFocus, watch, getValues }}>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 w-full md:w-1/2 mt-10 text-center">
               <FormField
-                control={form.control}
+                control={control}
                 name="username"
                 render={({ field }) => (
                   <FormItem>
@@ -114,7 +114,7 @@ export default function Home() {
                 )}
               />
               <FormField
-                control={form.control}
+                control={control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
@@ -126,7 +126,7 @@ export default function Home() {
                 )}
               />
               <FormField
-                control={form.control}
+                control={control}
                 name="mobno"
                 render={({ field }) => (
                   <FormItem>
@@ -138,7 +138,7 @@ export default function Home() {
                 )}
               />
               <FormField
-                control={form.control}
+                control={control}
                 name="message"
                 render={({ field }) => (
                   <FormItem>
